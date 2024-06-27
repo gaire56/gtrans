@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import {AzureKeyCredential, OpenAIClient} from "@azure/openai";
+import { error } from "console";
 
 export async function POST(request: NextRequest) {
     const formData = await request.formData();
@@ -15,17 +16,16 @@ if(
     process.env.AZURE_DEPLOYMENT_NAME === undefined
 ) {
     console.error("Azure credentials not set");
-    return {
-        sender:"",
-        response:"Azure credentials is not set",
-        }
+    return NextResponse.json({ 
+        error:"Azure credentials not set"
+     });
+    
     }
 
     if (file.size === 0) {
-        return {
-            sender: "",
-            response: "No audio file provided",
-        };
+        return NextResponse.json ({
+            error:"No audio file uploaded"
+        });
     }
 
     const arrayBuffer = await file.arrayBuffer();
