@@ -1,9 +1,8 @@
 import { ITranslation } from "@/mongodb/models/User";
 import { auth } from "@clerk/nextjs/server";
-// import DeleteTranslationButton from "./DeleteTranslationButton";
+import DeleteTranslationButton from "./DeleteTranslationButton";
 // import TimeAgo from "react-timeago";
 import TimeAgoText from "./TimeAgoText";
-import DeleteTranslationButton from "./DeleteTranslationButton";
 
 const getLanguage = (code: string) => {
   const lang = new Intl.DisplayNames(["en"], { type: "language" });
@@ -41,9 +40,9 @@ async function TranslationHistory() {
       <ul className="divide-y border rounded-md">
         {translations.map((translation) => (
           <li
-          key={translation._id}
-          className="flex justify-between items-center p-5 hover:bg-gray-50 relative"
-        >
+            key={translation._id as string}
+            className="flex justify-between items-center p-5 hover:bg-gray-50 relative"
+          >
             <div>
               <p className="text-sm mb-5 text-gray-500">
                 {getLanguage(translation.from)}
@@ -57,14 +56,13 @@ async function TranslationHistory() {
               </div>
             </div>
 
-            {/*TimeAgo */}
             <p className="text-sm text-gray-300 absolute top-2 right-2">
               <TimeAgoText
                 date={new Date(translation.timestamp).toISOString()}
               />
             </p>
-            {/*Delete Translation Button */}
-            <DeleteTranslationButton id={translation._id} />
+
+            <DeleteTranslationButton id={translation._id as string} />
           </li>
         ))}
       </ul>

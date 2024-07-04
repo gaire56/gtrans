@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import {AzureKeyCredential, OpenAIClient} from "@azure/openai";
-import { error } from "console";
+// import { error } from "console";
 
 export async function POST(request: NextRequest) {
     const formData = await request.formData();
