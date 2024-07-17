@@ -1,35 +1,21 @@
-import {  SignInButton, UserButton } from "@clerk/nextjs";
+//Gaire Ananta Prasad (M24W0272)
+// Import the auth module from Clerk for user authentication
 import { auth } from "@clerk/nextjs/server";
-import Image from "next/image";
-import Link from "next/link";
 
+// Import the ClientHeader component
+import ClientHeader from "./ClientHeader";
+
+// Define the Header component
 function Header() {
+  // Get the current user's ID using Clerk authentication
   const { userId } = auth();
 
+  // Log the user ID to the console for debugging purposes
   console.log("User ID:", userId);
 
-  return (
-    <header className="flex items-center justify-between px-8 border-b mb-5">
-      <div className="flex items-center justify-center h-20 overflow-hidden">
-        <Link href="/">
-          <Image
-            src="https://links.papareact.com/xgu"
-            alt="logo"
-            width={200}
-            height={100}
-            className="object-contain h-32 cursor-pointer"
-          />
-        </Link>
-      </div>
-      {userId ? (
-        <div>
-          <UserButton />
-        </div>
-      ) : (
-        <SignInButton signUpFallbackRedirectUrl="/translate" mode="modal" />
-      )}
-    </header>
-  );
+  // Render the ClientHeader component, passing the user ID as a prop
+  return <ClientHeader userId={userId} />;
 }
 
+// Export the Header component as the default export
 export default Header;

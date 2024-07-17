@@ -1,3 +1,8 @@
+/**Gaire Ananta Prasad(M24W0272)
+ * This code defines a Recorder component that handles audio recording using the MediaRecorder API,
+ * with states to manage permission, recording status, and audio chunks. The component provides
+ * functionality to start and stop recording, and it uploads the recorded audio using the provided uploadAudio function.
+ */
 'use client'
 
 import { MicIcon } from "lucide-react";
@@ -86,7 +91,7 @@ function Recorder(
     <MicIcon size ={20} className=" group-hover:underline" />
 
     {!permission && (
-        <button onClick={getMicrophonePermission}>Get Microphone</button>
+        <button onClick={getMicrophonePermission}>Speak</button>
     )}
 
     {/* {pending && <p>Translating</p>
